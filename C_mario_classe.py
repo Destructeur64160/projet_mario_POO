@@ -37,25 +37,23 @@ while continuer:
             if event.key == K_LEFT :
                 sens = "gauche"
                 image_mario=mario.deplacer_gauche()
-            if event.key== K_UP :
-                yp = yp
         else:       # Mario a l'arrêt
             if sens == "droite" :
                 image_mario=mario.stop(sens)
             else:
                 image_mario=mario.stop(sens)
-        if mario.xp-gomma.xp>0:
-            image_gomma=gomma.deplacer_droite()
-        elif mario.xp-gomma.xp<0:
-            image_gomma=gomma.deplacer_gauche()
-        if eagle1.xp<=650:
-            image_eagle1=eagle1.deplacer_droite()
-        else:
-            eagle1.xp=0
-        if eagle2.xp<=650:
-            image_eagle2=eagle2.deplacer_droite()
-        else:
-            eagle2.xp=0
+    if mario.xp-gomma.xp>0:
+        image_gomma=gomma.deplacer_droite()
+    elif mario.xp-gomma.xp<0:
+        image_gomma=gomma.deplacer_gauche()
+    if eagle1.xp<=650:
+        image_eagle1=eagle1.deplacer_droite()
+    else:
+        eagle1.xp=0
+    if eagle2.xp<=650:
+        image_eagle2=eagle2.deplacer_droite()
+    else:
+        eagle2.xp=0
     pygame.time.Clock().tick(10)
     #réaffichage de la fenêtre
     fenetre.blit(fond,(0,0))
@@ -63,7 +61,6 @@ while continuer:
     fenetre.blit(image_gomma,(gomma.xp,gomma.yp))
     fenetre.blit(image_eagle1,(eagle1.xp,eagle1.yp))
     fenetre.blit(image_eagle2,(eagle2.xp,eagle2.yp))
-
     pygame.display.flip()
 
 #Fermeture de  pygame
