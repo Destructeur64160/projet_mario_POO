@@ -34,13 +34,11 @@ while continuer:
             if event.key == K_RIGHT :
                 sens = "droite"
                 image_mario=mario.deplacer_droite()
-            if event.key == K_LEFT :
+            elif event.key == K_LEFT :
                 sens = "gauche"
                 image_mario=mario.deplacer_gauche()
-            if event.key == K_UP :
-                print(yp)
-                image_mario=mario.saute()
-                yp = yp+10
+            elif event.key == K_SPACE:  # Détection de la touche '2'
+                image_mario = mario.saute()
         else:       # Mario a l'arrêt
             if sens == "droite" :
                 image_mario=mario.stop()
@@ -58,6 +56,28 @@ while continuer:
         image_eagle2=eagle2.deplacer_droite()
     else:
         eagle2.xp=0
+    # Gestion du saut de Mario
+    if mario.is_jumping:
+        # Déplacement vertical
+        mario.yp += mario.jump_velocity  # Déplace Mario verticalement
+        mario.jump_velocity += 2  # Simule la gravité
+
+        # Pendant le saut, maintenir l'image de saut
+        if mario.sens == "droite":
+            image_mario = mario.sprites[16]  # Sprite de saut à droite
+        else:
+            image_mario = mario.sprites[17]  # Sprite de saut à gauche
+
+        # Fin du saut (Mario touche le sol)
+        if mario.yp >= 296:
+            mario.yp = 296  # Mario revient au sol
+            mario.is_jumping = False  # Le saut est terminé
+            mario.jump_velocity = 0
+            image_mario = mario.stop()  # Retour à l'image de repos
+
+
+
+
     pygame.time.Clock().tick(10)
     #réaffichage de la fenêtre
     fenetre.blit(fond,(0,0))
