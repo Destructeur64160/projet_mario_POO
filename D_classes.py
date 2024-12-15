@@ -7,6 +7,8 @@ class Personnage:
         self.deplt=deplt
         self.index=0
         self.sens='droite'
+        self.is_jumping = False  # Nouveau : Mario saute ou non
+        self.jump_time = 0
 
     def deplacer_droite(self):
         self.sens='droite'
@@ -34,8 +36,11 @@ class Mario(Personnage):	# la classe Mario hérite de la classe Personnage
         self.gravite=9.8
 
     def saute(self):
-        if self.sens=='droite':
-            return self.sprites[16]
-        elif self.sens=='gauche':
-            return self.sprites[17]
+        if not self.is_jumping:
+            self.is_jumping = True
+            self.jump_velocity = -25  # Vitesse initiale pour monter
+            if self.sens == 'droite':
+                return self.sprites[16]
+            else:
+                return self.sprites[17]
 
