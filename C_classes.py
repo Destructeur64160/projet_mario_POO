@@ -7,18 +7,23 @@ class Personnage:
         self.yp=yp
         self.deplt=deplt
         self.index=0
+        self.sens='droite'
+        self.is_jumping = False  # Nouveau : Mario saute ou non
+        self.jump_time = 0
 
     def deplacer_droite(self):
+        self.sens='droite'
         self.xp +=self.deplt
         self.index = (self.index + 1) % 6
         return self.sprites[self.index]
     def deplacer_gauche(self):
+        self.sens='gauche'
         self.xp -=self.deplt
         self.index = ((self.index + 1) % 6)+6
         return self.sprites[self.index]
-    def stop(self, sens):
-        if sens=='droite':
+    def stop(self):
+        if self.sens=='droite':
             return self.sprites[12]
-        elif sens=='gauche':
+        elif self.sens=='gauche':
             return self.sprites[13]
 
