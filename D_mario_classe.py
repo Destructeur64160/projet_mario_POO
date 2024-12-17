@@ -13,8 +13,6 @@ index = 0
 xp = 50
 yp = 296
 deplt = 10
-sens = "droite"
-sens_eagle="droite"
 
 continuer = True
 '''
@@ -32,15 +30,13 @@ while continuer:
             continuer = False
         if event.type == KEYDOWN :
             if event.key == K_RIGHT :
-                sens = "droite"
                 image_mario=mario.deplacer_droite()
             elif event.key == K_LEFT :
-                sens = "gauche"
                 image_mario=mario.deplacer_gauche()
             elif event.key == K_SPACE:  # Détection de la touche '2'
                 image_mario = mario.saute()
         else:       # Mario a l'arrêt
-            if sens == "droite" :
+            if mario.sens == "droite" :
                 image_mario=mario.stop()
             else:
                 image_mario=mario.stop()
