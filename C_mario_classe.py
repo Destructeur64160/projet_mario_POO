@@ -13,7 +13,6 @@ index = 0
 xp = 50
 yp = 296
 deplt = 10
-sens = "droite"
 sens_eagle="droite"
 
 continuer = True
@@ -32,16 +31,16 @@ while continuer:
             continuer = False
         if event.type == KEYDOWN :
             if event.key == K_RIGHT :
-                sens = "droite"
                 image_mario=mario.deplacer_droite()
             if event.key == K_LEFT :
-                sens = "gauche"
                 image_mario=mario.deplacer_gauche()
+            if event.key== K_UP :
+                yp = yp
         else:       # Mario a l'arrêt
-            if sens == "droite" :
-                image_mario=mario.stop(sens)
+            if mario.sens == "droite" :
+                image_mario=mario.stop()
             else:
-                image_mario=mario.stop(sens)
+                image_mario=mario.stop()
     if mario.xp-gomma.xp>0:
         image_gomma=gomma.deplacer_droite()
     elif mario.xp-gomma.xp<0:
@@ -61,6 +60,7 @@ while continuer:
     fenetre.blit(image_gomma,(gomma.xp,gomma.yp))
     fenetre.blit(image_eagle1,(eagle1.xp,eagle1.yp))
     fenetre.blit(image_eagle2,(eagle2.xp,eagle2.yp))
+
     pygame.display.flip()
 
 #Fermeture de  pygame
