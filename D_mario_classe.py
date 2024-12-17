@@ -60,7 +60,7 @@ while continuer:
     if mario.is_jumping:
         # Déplacement vertical
         mario.yp += mario.jump_velocity  # Déplace Mario verticalement
-        mario.jump_velocity += 2  # Simule la gravité
+        mario.jump_velocity += 2 # Simule la gravité
 
         # Pendant le saut, maintenir l'image de saut
         if mario.sens == "droite":
@@ -75,8 +75,11 @@ while continuer:
             mario.jump_velocity = 0
             image_mario = mario.stop()  # Retour à l'image de repos
 
-
-
+    if mario.rectangle.colliderect(gomma.rectangle):
+        #continuer = False
+        print("Game Over !")
+    # elif mario.rectangle.colliderect(gomma.rectangle) == False :
+    #     print("Oh !")
 
     pygame.time.Clock().tick(10)
     #réaffichage de la fenêtre
