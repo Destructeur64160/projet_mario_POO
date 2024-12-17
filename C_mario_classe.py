@@ -13,7 +13,6 @@ index = 0
 xp = 50
 yp = 296
 deplt = 10
-sens_eagle="droite"
 
 continuer = True
 '''
