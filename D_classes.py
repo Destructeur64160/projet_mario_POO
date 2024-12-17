@@ -9,6 +9,8 @@ class Personnage:
         self.sens='droite'
         self.is_jumping = False  # Nouveau : Mario saute ou non
         self.jump_time = 0
+        self.rectangle=sprites[0].get_rect().inflate(-5,-5)
+        self.rectangle.topleft = (self.xp, self.yp)
 
     def deplacer_droite(self):
         self.sens='droite'
@@ -26,6 +28,7 @@ class Personnage:
         elif self.sens=='gauche':
             return self.sprites[13]
 
+
 class Mario(Personnage):	# la classe Mario hérite de la classe Personnage
     # la déclaration du constructeur de Mario est identique
     # à celle du constructeur de Personnage
@@ -33,7 +36,6 @@ class Mario(Personnage):	# la classe Mario hérite de la classe Personnage
         # Appel explicite au constructeur de la classe Personnage
         Personnage.__init__(self, sprite, xp = 50, yp = 296, deplt = 10)
         # D’autres propriétés peuvent être rajoutées ici
-        self.gravite=9.8
 
     def saute(self):
         if not self.is_jumping:
