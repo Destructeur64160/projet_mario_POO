@@ -7,8 +7,8 @@ hauteur_ecran = 360
 #Définiton de la fenêtre d'affichage
 fenetre = pygame.display.set_mode((largeur_ecran, hauteur_ecran))
 # Chargement des images
-fond = pygame.image.load("images/background.jpg").convert()
-mort = pygame.image.load("images/game_over.jpg").convert()
+fond = pygame.image.load("images/background.jpg").convert()#Fond pendant le jeux
+mort = pygame.image.load("images/game_over.jpg").convert()#Fond de Game Over
 #configuration du delais et de l'intervalle de répétition des touches
 pygame.key.set_repeat(150,100)
 
@@ -66,4 +66,3 @@ eagle_sprite.append(eagle_sprite_sheet.subsurface(pygame.Rect(73,210,52,34))) #d
 eagle_sprite.append(eagle_sprite_sheet.subsurface(pygame.Rect(73,254,52,34))) #droite3
 eagle_sprite.append(eagle_sprite_sheet.subsurface(pygame.Rect(73,340,52,34))) #droite4
 eagle_sprite.append(eagle_sprite_sheet.subsurface(pygame.Rect(73,382,52,34))) #droite5
-
