@@ -10,14 +10,16 @@ class Personnage:
         self.is_jumping = False  # Nouveau : Mario saute ou non
         self.jump_time = 0
         self.rectangle=sprites[0].get_rect().inflate(-5,-5)
-        self.rectangle.topleft = (self.xp, self.yp)
 
     def deplacer_droite(self):
+        self.rectangle.topleft = (self.xp, self.yp)
         self.sens='droite'
         self.xp +=self.deplt
         self.index = (self.index + 1) % 6
         return self.sprites[self.index]
+
     def deplacer_gauche(self):
+        self.rectangle.topleft = (self.xp, self.yp)
         self.sens='gauche'
         self.xp -=self.deplt
         self.index = ((self.index + 1) % 6)+6
