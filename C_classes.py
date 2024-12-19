@@ -6,9 +6,6 @@ class Personnage:
         self.deplt=deplt
         self.index=0
         self.sens='droite'
-        self.is_jumping = False
-        self.jump_time = 0
-        self.rectangle=sprites[0].get_rect().inflate(-5,-5)
 
     def deplacer_droite(self):
         '''Cette fonction fait augmenter le self.xp et renvoie la bonne image'''
