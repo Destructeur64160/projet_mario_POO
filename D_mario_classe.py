@@ -73,20 +73,21 @@ while continuer:
             image_mario = mario.stop()  # Retour à l'image de repos
 
     if mario.rectangle.colliderect(gomma.rectangle):
-        continuer = False
+        fenetre.blit(mort,(0,0))
         print("Game Over !")
+        #continuer = False
     # elif mario.rectangle.colliderect(gomma.rectangle) == False :
     #     print("Oh !")
-
-    pygame.time.Clock().tick(10)
-    #réaffichage de la fenêtre
-    fenetre.blit(fond,(0,0))
-    fenetre.blit(image_mario,(mario.xp,mario.yp))
-    fenetre.blit(image_gomma,(gomma.xp,gomma.yp))
-    fenetre.blit(image_eagle1,(eagle1.xp,eagle1.yp))
-    fenetre.blit(image_eagle2,(eagle2.xp,eagle2.yp))
-    pygame.draw.rect(fenetre, (255, 0, 0), mario.rectangle, 2)  # Rectangle de Mario en rouge
-    pygame.draw.rect(fenetre, (0, 255, 0), gomma.rectangle, 2)  # Rectangle de Gomma en vert
+    else:
+        pygame.time.Clock().tick(10)
+        #réaffichage de la fenêtre
+        fenetre.blit(fond,(0,0))
+        fenetre.blit(image_mario,(mario.xp,mario.yp))
+        fenetre.blit(image_gomma,(gomma.xp,gomma.yp))
+        fenetre.blit(image_eagle1,(eagle1.xp,eagle1.yp))
+        fenetre.blit(image_eagle2,(eagle2.xp,eagle2.yp))
+        pygame.draw.rect(fenetre, (255, 0, 0), mario.rectangle, 2)  # Rectangle de Mario en rouge
+        pygame.draw.rect(fenetre, (0, 255, 0), gomma.rectangle, 2)  # Rectangle de Gomma en vert
 
     pygame.display.flip()
 
