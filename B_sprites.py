@@ -8,7 +8,7 @@ hauteur_ecran = 360
 fenetre = pygame.display.set_mode((largeur_ecran, hauteur_ecran))
 # Chargement des images
 fond = pygame.image.load("images/background.jpg").convert()
-
+mort = pygame.image.load("images/game_over.jpg").convert()
 #configuration du delais et de l'intervalle de répétition des touches
 pygame.key.set_repeat(150,100)
 
