@@ -24,7 +24,11 @@ mario=Mario(mario_sprite,xp,yp,deplt)
 gomma=Personnage(gooma_sprite,600,296,deplt-5)
 eagle1=Personnage(eagle_sprite,0,30,deplt+5)
 eagle2=Personnage(eagle_sprite,-200,30,deplt+2)
+
 while continuer:
+    # Changer les rectangles en fonction des coordonées des personnages
+    mario.rectangle.topleft = (mario.xp, mario.yp)
+    gomma.rectangle.topleft = (gomma.xp, gomma.yp)
     #détection des événements de type clavier notamment
     for event in pygame.event.get():
         if event.type == QUIT :
@@ -38,6 +42,9 @@ while continuer:
                 image_mario=mario.deplacer_gauche()
             elif event.key == K_SPACE:  # Détection de la touche '2'
                 image_mario = mario.saute()
+            elif event.key == K_c:  # Détection des coordonnées
+                print(mario.xp)
+                print(mario.yp)
         else:       # Mario a l'arrêt
             if mario.sens == "droite" :
                 image_mario=mario.stop()
@@ -67,32 +74,37 @@ while continuer:
         else:
             image_mario = mario.sprites[17]  # Sprite de saut à gauche
 
-        # Fin du saut (Mario touche le sol)
-        if mario.yp >= 296:
-            mario.yp = 296  # Mario revient au sol
-            mario.is_jumping = False  # Le saut est terminé
-            mario.jump_velocity = 0
-            image_mario = mario.stop()  # Retour à l'image de repos
-        elif mario.yp <= 130 and mario.yp >= 120 and mario.xp>=315 and mario.xp<=525 :
-            mario.yp = 130  # Mario revient au sol
-            mario.jump_velocity = 0
-            image_mario = mario.stop()
-        elif mario.yp <= 130 and mario.yp >= 120 and mario.xp>=150 and mario.xp<=190 :
-            mario.yp = 130  # Mario revient au sol
-            mario.jump_velocity = 0
-            image_mario = mario.stop()
-        elif mario.yp <= 130 and mario.yp >= 120 :
-            mario.yp += mario.jump_velocity  # Déplace Mario verticalement
+    # Fin du saut (Mario touche le sol)
+    if mario.yp >= 296:
+        mario.yp = 296  # Mario revient au sol
+        mario.is_jumping = False  # Le saut est terminé
+        mario.jump_velocity = 0
+        #image_mario = mario.stop()  # Retour à l'image de repos
+    elif (mario.yp <= 130 and mario.yp >= 120 and mario.xp>=315 and mario.xp<=525) or (mario.yp <= 130 and mario.yp >= 120 and mario.xp>=150 and mario.xp<=190):
+        mario.yp = 130  # Mario revient au sol
+        mario.jump_velocity = 0
+        mario.is_jumping = False
+        bloc=True
+    #Touche le bloc au dessus
+    elif (mario.yp >= 200 and mario.yp <= 220 and mario.xp>=315 and mario.xp<=525) or (mario.yp >= 200 and mario.yp <= 220 and mario.xp>=150 and mario.xp<=190) or (mario.yp >= 40 and mario.yp <= 60 and mario.xp>=410 and mario.xp<=460) and mario.is_jumping :
+        mario.jump_velocity = 20
+    else :
+        mario.is_jumping = True
 
-
-
-    pygame.time.Clock().tick(10)
-    #réaffichage de la fenêtre
-    fenetre.blit(fond,(0,0))
-    fenetre.blit(image_mario,(mario.xp,mario.yp))
-    fenetre.blit(image_gomma,(gomma.xp,gomma.yp))
-    fenetre.blit(image_eagle1,(eagle1.xp,eagle1.yp))
-    fenetre.blit(image_eagle2,(eagle2.xp,eagle2.yp))
+    if mario.rectangle.colliderect(gomma.rectangle):# Vérification des collisions entre mario et gomma
+        mario.vie -=1
+        mario.yp = 296
+        mario.xp = 50
+    elif mario.vie==0:
+        fenetre.blit(mort,(0,0))#Affichel'image de fin
+    else:
+        pygame.time.Clock().tick(10)
+        #réaffichage de la fenêtre
+        fenetre.blit(fond,(0,0))
+        fenetre.blit(image_mario,(mario.xp,mario.yp))
+        fenetre.blit(image_gomma,(gomma.xp,gomma.yp))
+        fenetre.blit(image_eagle1,(eagle1.xp,eagle1.yp))
+        fenetre.blit(image_eagle2,(eagle2.xp,eagle2.yp))
 
     pygame.display.flip()
 
